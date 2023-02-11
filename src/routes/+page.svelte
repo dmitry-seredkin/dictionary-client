@@ -5,7 +5,7 @@
 
   export let data: PageData;
 
-  const getEntryPath = (id: number): string => `/entry/${id}`;
+  const getEntryPath = (id: number): string => `/entries/${id}`;
 </script>
 
 <ul class="list">
