@@ -1,10 +1,7 @@
-import { ENTRY_LIST } from "shared/constants";
-import type { EntryItem } from "shared/models";
+import type { Entry } from "shared/models";
 import type { PageLoad } from "./$types";
 
-interface Response {
-  entry?: EntryItem;
-}
-
-export const load: PageLoad<Response> = ({ params }) =>
-  Promise.resolve({ entry: ENTRY_LIST.find((entry) => entry.id === Number(params.id)) });
+export const load: PageLoad<Entry> = ({ params, fetch }) =>
+  fetch(`http://localhost:3000/api/v1/dictionary/entries/${params.id}`).then((response) =>
+    response.json()
+  );

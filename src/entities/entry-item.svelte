@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { EntryItem } from "shared/models";
+  import type { Entry } from "shared/models";
 
-  export let entry: EntryItem;
+  export let entry: Entry;
 </script>
 
 <p class="entry-item">
