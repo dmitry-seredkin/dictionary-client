@@ -1,13 +1,17 @@
 <script lang="ts">
-  import Header from "widgets/header.svelte";
-  import Footer from "widgets/footer.svelte";
+  import Sidebar from "widgets/sidebar.svelte";
 </script>
 
-<Header />
-<main>
+<svelte:head>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+</svelte:head>
+<Sidebar />
+<main class="container">
   <slot />
 </main>
-<Footer />
 
 <style lang="less">
   :global(*) {
@@ -16,14 +20,14 @@
     box-sizing: border-box;
   }
 
-  :global(html, body, main) {
+  :global(html, body, #root) {
+    font: 400 16px Mulish;
     height: 100%;
     overflow: hidden;
   }
 
-  :global(body) {
+  :global(#root) {
     display: grid;
-    grid-template-rows: auto 1fr auto;
-    margin: 0;
+    grid-template-columns: auto 1fr;
   }
 </style>
