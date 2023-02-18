@@ -36,3 +36,13 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+## TODO
+
+* List of words
+  * Add search for existing dictionary
+  * Update entry-section layout
+* Quizlet
+  * Create cards functionality
+* Crawler
+  * Add administration page for the crawler usage

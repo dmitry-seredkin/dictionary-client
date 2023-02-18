@@ -7,14 +7,14 @@
   }
 
   let links: SidebarLink[] = [
-    { name: "List of words", href: "/" },
-    { name: "Quizlet", href: "/quizlet" },
+    { name: "Dictionary", href: "/" },
+    { name: "Flashcards", href: "/flashcards" },
   ];
 </script>
 
 <aside class="sidebar">
   <header class="header">
-    <Link class="home-link" href="/">Dictionary</Link>
+    <Link class="home-link" href="/">Learner's Dictionary</Link>
   </header>
   <nav>
     <ul>
