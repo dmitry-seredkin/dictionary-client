@@ -1,9 +1,9 @@
-import type { Entry } from "shared/models";
+import type { EntryIdentity } from "shared/models";
 
 import type { PageLoad } from "./$types";
 
 interface EntriesResponse {
-  entries: Entry[];
+  entries: EntryIdentity[];
 }
 
 export const load: PageLoad<EntriesResponse> = ({ fetch }) =>

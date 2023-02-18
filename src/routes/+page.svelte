@@ -1,5 +1,6 @@
 <script lang="ts">
   import EntryItem from "entities/entry-item.svelte";
+  import { Link } from "shared/ui";
 
   import type { PageData } from "./$types";
 
@@ -9,21 +10,22 @@
 </script>
 
 <ul class="list">
-  {#each data.entries as entry}
+  {#each data.entries as entry, index}
     <li>
-      <a href={getEntryPath(entry.id)}>
-        <EntryItem {entry} />
-      </a>
+      <Link href={getEntryPath(entry.id)}>
+        <EntryItem {entry} index={index + 1} />
+      </Link>
     </li>
-  {:else}
-    <p>Dictionary is empty!</p>
   {/each}
 </ul>
 
 <style lang="less">
   .list {
+    display: grid;
+    align-content: flex-start;
+    gap: 1rem;
     height: 100%;
+    padding: 2rem 1.5rem;
     overflow: auto;
-    list-style: none;
   }
 </style>

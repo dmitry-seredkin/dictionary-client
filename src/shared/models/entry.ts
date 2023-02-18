@@ -7,4 +7,4 @@ export interface Entry {
   definitions: string[];
 }
 
-export type EntryIdentity = Pick<Entry, "id" | "term">;
+export type EntryIdentity = Pick<Entry, "id" | "partOfSpeech" | "term">;

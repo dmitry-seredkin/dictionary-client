@@ -26,8 +26,13 @@
     overflow: hidden;
   }
 
+  :global(ul) {
+    list-style: none;
+  }
+
   :global(#root) {
     display: grid;
     grid-template-columns: auto 1fr;
+    background-color: #eeeeee; // TODO: use variable
   }
 </style>

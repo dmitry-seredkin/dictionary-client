@@ -34,7 +34,7 @@
   }
 
   .header {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     padding: 2rem; // TODO: variable
 
     :global(.home-link) {
