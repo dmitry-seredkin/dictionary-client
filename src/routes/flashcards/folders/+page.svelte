@@ -1,4 +1,5 @@
 <script lang="ts">
+  import FolderItem from "entities/folder-item.svelte";
   import { Link } from "shared/ui";
 
   import type { PageData } from "./$types";
@@ -9,9 +10,11 @@
 </script>
 
 <ul class="list">
-  {#each data.folders as { id, name }}
+  {#each data.folders as folder}
     <li>
-      <Link href={getFolderPath(id)}>{name}</Link>
+      <Link href={getFolderPath(folder.id)}>
+        <FolderItem {folder} />
+      </Link>
     </li>
   {/each}
 </ul>
@@ -19,5 +22,8 @@
 <style lang="less">
   .list {
     display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(6.25rem, 1fr));
+    gap: 1rem;
+    padding: 1.5rem; // TODO: variable
   }
 </style>
