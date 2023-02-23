@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { ROUTES } from "shared/constants";
   import { Link, MenuLink } from "shared/ui";
 
   interface SidebarLink {
@@ -7,14 +8,15 @@
   }
 
   let links: SidebarLink[] = [
-    { name: "Dictionary", href: "/" },
-    { name: "Flashcards", href: "/flashcards" },
+    { name: "Dashboard", href: ROUTES.DASHBOARD },
+    { name: "Dictionary", href: ROUTES.DICTIONARY },
+    { name: "Practice", href: ROUTES.PRACTICE },
   ];
 </script>
 
 <aside class="sidebar">
   <header class="header">
-    <Link class="home-link" href="/">Learner's Dictionary</Link>
+    <Link class="home-link" href={ROUTES.HOME}>Learner's Dictionary</Link>
   </header>
   <nav>
     <ul>

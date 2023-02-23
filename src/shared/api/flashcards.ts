@@ -24,7 +24,7 @@ export const flashcards = {
   loadFolder: (id: string) => fetcher.get<FolderItem>([folders, id]),
   loadFolders: () => fetcher.get<FolderItem[]>(folders),
   // Modules
-  createModule: (name: string) => fetcher.post<FolderItem>(modules, { name }),
+  createModule: (name: string) => fetcher.post<ModuleItem>(modules, { name }),
   deleteModule: (id: number) => fetcher.delete<void>([modules, id]),
   loadModule: (id: string) => fetcher.get<ModuleItem>([modules, id]),
   loadModules: () => fetcher.get<ModuleItem[]>(modules),
