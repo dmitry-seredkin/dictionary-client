@@ -13,35 +13,44 @@ interface RequestOptions extends Omit<RequestInit, "body" | "method"> {
   withAuth?: boolean;
 }
 
-class Api {
-  private token: string;
+type Path = string | number;
+
+type RequestPath = Path | Path[];
+
+class Fetcher {
+  // private token: string;
   private url: string;
 
-  constructor(token: string, url: string) {
-    this.token = token;
+  constructor(url: string) {
+    // this.token = token;
     this.url = url;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private getHeaders = (withAuth = true): Record<string, string> => {
     const headers: Record<string, string> = {
       Accept: "application/json",
       "Content-Type": "application/json",
     };
 
-    if (withAuth) {
-      headers.Authorization = `Bearer ${this.token}`;
-    }
+    // if (withAuth) {
+    //   headers.Authorization = `Bearer ${this.token}`;
+    // }
     return headers;
   };
 
   private request = async <T>(
-    path: string,
+    path: RequestPath,
     { data, headers, params, withAuth, ...options }: RequestOptions
   ): Promise<T> => {
     const defaultHeaders = this.getHeaders(withAuth);
     headers = { ...defaultHeaders, ...headers };
 
     params = params ? Object.entries(params).filter(([, value]) => value) : [];
+
+    if (Array.isArray(path)) {
+      path = path.join("/");
+    }
 
     if (params.length > 0) {
       const url = new URLSearchParams(params);
@@ -60,17 +69,17 @@ class Api {
     return response.json();
   };
 
-  get = async <T>(path: string, options?: RequestOptions): Promise<T> =>
+  get = <T>(path: RequestPath, options?: RequestOptions): Promise<T> =>
     this.request<T>(path, { ...options, method: RequestMethod.Get });
 
-  post = async <T>(path: string, data: unknown, options?: RequestOptions): Promise<T> =>
+  post = <T>(path: RequestPath, data: unknown, options?: RequestOptions): Promise<T> =>
     this.request<T>(path, { ...options, method: RequestMethod.Post, data });
 
-  put = async <T>(path: string, data: unknown, options?: RequestOptions): Promise<T> =>
+  put = <T>(path: RequestPath, data: unknown, options?: RequestOptions): Promise<T> =>
     this.request<T>(path, { ...options, method: RequestMethod.Put, data });
 
-  delete = async <T>(path: string, data: unknown, options?: RequestOptions): Promise<T> =>
-    this.request<T>(path, { ...options, method: RequestMethod.Delete, data });
+  delete = <T>(path: RequestPath, options?: RequestOptions): Promise<T> =>
+    this.request<T>(path, { ...options, method: RequestMethod.Delete });
 }
 
-export const api = new Api("", "http://localhost:3000");
+export const fetcher = new Fetcher("http://localhost:3000");

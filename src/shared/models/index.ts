@@ -1,2 +1,1 @@
-export * from "./entry";
-export * from "./flashcards";
+export * from "./wrapped-array";
