@@ -6,7 +6,7 @@
 </script>
 
 <p class="entry">
-  <span>{index}</span>
+  <span>{++index}</span>
   <span class="term">{entry.term} </span>
   <span class="part-of-speech">{entry.partOfSpeech}</span>
 </p>
