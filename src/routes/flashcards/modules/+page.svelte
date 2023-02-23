@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { flashcards } from "shared/api";
   import { Link } from "shared/ui";
 
   import type { PageData } from "./$types";
@@ -8,16 +9,10 @@
   let name = "";
   $: ({ modules } = data);
 
-  const createModule = () => {
-    fetch("http://localhost:3000/api/v1/flashcards/modules", {
-      method: "POST",
-      body: JSON.stringify({ name }),
-    })
-      .then((response) => response.json())
-      .then((module) => (modules = modules.concat(module)));
-  };
+  const createModule = () =>
+    flashcards.createModule(name).then((module) => (modules = [...modules, module]));
 
-  const getModulePath = (id: string): string => `/flashcards/modules/${id}`;
+  const getModulePath = (id: number): string => `/flashcards/modules/${id}`;
 </script>
 
 <section>

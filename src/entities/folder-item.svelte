@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { FolderItem } from "shared/models";
+  import type { FolderItem } from "shared/api";
 
   export let folder: FolderItem;
 </script>

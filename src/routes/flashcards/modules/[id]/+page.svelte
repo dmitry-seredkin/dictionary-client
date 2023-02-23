@@ -1,14 +1,12 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
+  import { flashcards } from "shared/api";
   import type { PageData } from "./$types";
 
   export let data: PageData;
 
-  const deleteModule = () => {
-    fetch(`http://localhost:3000/api/v1/flashcards/modules/${data.id}`, {
-      method: "DELETE",
-    }).then(() => goto("/flashcards/modules"));
-  };
+  const deleteModule = () =>
+    flashcards.deleteModule(data.id).then(() => goto("/flashcards/modules"));
 </script>
 
 {#if data}

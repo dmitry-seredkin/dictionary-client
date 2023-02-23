@@ -1,12 +1,7 @@
-import type { EntryIdentity } from "shared/models";
+import { dictionary, type EntryItem } from "shared/api";
+import type { WrappedArray } from "shared/models";
 
 import type { PageLoad } from "./$types";
 
-interface EntriesResponse {
-  entries: EntryIdentity[];
-}
-
-export const load: PageLoad<EntriesResponse> = ({ fetch }) =>
-  fetch("http://localhost:3000/api/v1/dictionary/entries")
-    .then((response) => response.json())
-    .then((entries) => ({ entries }));
+export const load: PageLoad<WrappedArray<EntryItem, "entries">> = () =>
+  dictionary.loadEntries().then((entries) => ({ entries }));

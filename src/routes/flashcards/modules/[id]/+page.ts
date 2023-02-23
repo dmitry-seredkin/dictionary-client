@@ -1,7 +1,5 @@
-import type { ModuleItem } from "shared/models";
+import { flashcards, type ModuleItem } from "shared/api";
+
 import type { PageLoad } from "./$types";
 
-export const load: PageLoad<ModuleItem> = ({ params, fetch }) =>
-  fetch(`http://localhost:3000/api/v1/flashcards/modules/${params.id}`).then((response) =>
-    response.json()
-  );
+export const load: PageLoad<ModuleItem> = ({ params }) => flashcards.loadModule(params.id);

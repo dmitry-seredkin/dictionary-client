@@ -1,5 +1,6 @@
 <script lang="ts">
   import FolderItem from "entities/folder-item.svelte";
+  import { flashcards } from "shared/api";
   import { Link } from "shared/ui";
 
   import type { PageData } from "./$types";
@@ -9,16 +10,10 @@
   $: ({ folders } = data);
   let name = "";
 
-  const createFolder = () => {
-    fetch("http://localhost:3000/api/v1/flashcards/folders", {
-      method: "POST",
-      body: JSON.stringify({ name }),
-    })
-      .then((response) => response.json())
-      .then((folder) => (folders = folders.concat(folder)));
-  };
+  const createFolder = () =>
+    flashcards.createFolder(name).then((folder) => (folders = [...folders, folder]));
 
-  const getFolderPath = (id: string): string => `/flashcards/folders/${id}`;
+  const getFolderPath = (id: number): string => `/flashcards/folders/${id}`;
 </script>
 
 <section>

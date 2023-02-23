@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { EntryIdentity } from "shared/models";
+  import type { EntryItem } from "shared/api";
 
-  export let entry: EntryIdentity;
+  export let entry: EntryItem;
   export let index: number;
 </script>
 

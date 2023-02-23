@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Entry } from "shared/models";
+  import type { Entry } from "shared/api";
 
   export let entry: Entry;
 </script>

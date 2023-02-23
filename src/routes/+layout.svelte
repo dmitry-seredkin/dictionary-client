@@ -2,12 +2,6 @@
   import Sidebar from "widgets/sidebar.svelte";
 </script>
 
-<svelte:head>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;700&display=swap"
-    rel="stylesheet"
-  />
-</svelte:head>
 <Sidebar />
 <main class="container">
   <slot />

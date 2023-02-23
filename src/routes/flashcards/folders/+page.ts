@@ -1,12 +1,7 @@
-import type { FolderItem } from "shared/models";
+import { flashcards, type FolderItem } from "shared/api";
+import type { WrappedArray } from "shared/models";
 
 import type { PageLoad } from "./$types";
 
-interface FoldersResponse {
-  folders: FolderItem[];
-}
-
-export const load: PageLoad<FoldersResponse> = ({ fetch }) =>
-  fetch("http://localhost:3000/api/v1/flashcards/folders")
-    .then((response) => response.json())
-    .then((folders) => ({ folders }));
+export const load: PageLoad<WrappedArray<FolderItem, "folders">> = () =>
+  flashcards.loadFolders().then((folders) => ({ folders }));
