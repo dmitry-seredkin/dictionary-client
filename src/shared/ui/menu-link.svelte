@@ -1,9 +1,11 @@
 <script lang="ts">
   import { page } from "$app/stores";
+  import { ROUTES } from "shared/constants";
 
   export let href: string;
 
-  $: active = $page.url.pathname === href;
+  $: active =
+    href === ROUTES.HOME ? $page.url.pathname === href : $page.url.pathname.startsWith(href);
 </script>
 
 <a class="link" class:active {href}><slot /></a>
