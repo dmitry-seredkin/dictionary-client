@@ -13,5 +13,6 @@ export type EntryItem = Pick<Entry, "id" | "partOfSpeech" | "term">;
 
 export const dictionary = {
   loadEntry: (id: string) => fetcher.get<Entry>(`/dictionary/entries/${id}`),
-  loadEntries: () => fetcher.get<EntryItem[]>("/dictionary/entries"),
+  loadEntries: (query?: string) =>
+    fetcher.get<EntryItem[]>("/dictionary/entries", { params: { query } }),
 };

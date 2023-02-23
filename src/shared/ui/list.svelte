@@ -5,15 +5,17 @@
   export let fallback = "List is empty";
 </script>
 
-<ul class="list">
-  {#each data as item, index}
-    <li class="item">
-      <slot name="item" {item} {index}>{JSON.stringify(item)}</slot>
-    </li>
-  {:else}
-    <p>{fallback}</p>
-  {/each}
-</ul>
+{#if data}
+  <ul class="list">
+    {#each data as item, index}
+      <li class="item">
+        <slot name="item" {item} {index}>{JSON.stringify(item)}</slot>
+      </li>
+    {/each}
+  </ul>
+{:else}
+  <p>{fallback}</p>
+{/if}
 
 <style lang="less">
   .list {
@@ -21,7 +23,6 @@
     align-content: flex-start;
     gap: 1rem;
     height: 100%;
-    padding: 2rem 1.5rem;
     overflow: auto;
   }
 </style>
