@@ -1,7 +1,13 @@
-<script lang="ts">
-  import type { Entry } from "shared/api";
+<script lang="ts" context="module">
+  export interface EntrySectionModel {
+    term: string;
+    partOfSpeech: string;
+    definitions: string[];
+  }
+</script>
 
-  export let entry: Entry;
+<script lang="ts">
+  export let entry: EntrySectionModel;
 </script>
 
 <section>

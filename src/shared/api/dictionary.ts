@@ -11,8 +11,9 @@ export interface Entry {
 
 export type EntryItem = Pick<Entry, "id" | "partOfSpeech" | "term">;
 
+const entries = "/dictionary/entries";
+
 export const dictionary = {
-  loadEntry: (id: string) => fetcher.get<Entry>(`/dictionary/entries/${id}`),
-  loadEntries: (query?: string) =>
-    fetcher.get<EntryItem[]>("/dictionary/entries", { params: { query } }),
+  loadEntry: (id: string) => fetcher.get<Entry>([entries, id]),
+  loadEntries: (query?: string) => fetcher.get<EntryItem[]>(entries, { params: { query } }),
 };

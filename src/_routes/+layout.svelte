@@ -29,4 +29,8 @@
     grid-template-columns: auto 1fr;
     background-color: #eeeeee; // TODO: use variable
   }
+
+  .container {
+    overflow: hidden;
+  }
 </style>

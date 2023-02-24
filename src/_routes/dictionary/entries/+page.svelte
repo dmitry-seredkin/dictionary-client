@@ -15,7 +15,8 @@
 
   const getEntryPath = (id: number) => `${ROUTES.DICTIONARY_ENTRIES}/${id}`;
 
-  const searchEntries = () => dictionary.loadEntries(query).then((result) => (entries = result));
+  const searchEntries = () =>
+    dictionary.loadEntries(query).then((response) => (entries = response));
 
   const onKeyDown = ({ key }: KeyboardEvent) => {
     if (key === KeyName.Enter) searchEntries();

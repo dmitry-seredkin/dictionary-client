@@ -11,6 +11,7 @@
     { name: "Dashboard", href: ROUTES.DASHBOARD },
     { name: "Dictionary", href: ROUTES.DICTIONARY },
     { name: "Practice", href: ROUTES.PRACTICE },
+    { name: "Search", href: ROUTES.SEARCH },
   ];
 </script>
 

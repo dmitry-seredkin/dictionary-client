@@ -1,6 +1,7 @@
 const HOME = "/";
 const DICTIONARY = "/dictionary";
 const PRACTICE = "/practice";
+const SEARCH = "/search";
 
 const path = <T extends string, R extends string>(prefix: T, route: R) =>
   `${prefix}/${route}` as const;
@@ -13,4 +14,5 @@ export const ROUTES = {
   PRACTICE,
   PRACTICE_FOLDERS: path(PRACTICE, "folders"),
   PRACTICE_MODULES: path(PRACTICE, "modules"),
+  SEARCH,
 } as const;
