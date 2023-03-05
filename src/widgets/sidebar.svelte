@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { goto } from "$app/navigation";
+
   import { ROUTES } from "shared/constants";
   import { Link, MenuLink } from "shared/ui";
 
@@ -13,8 +15,16 @@
     { name: "Practice", href: ROUTES.PRACTICE },
     { name: "Search", href: ROUTES.SEARCH },
   ];
+
+  const onKeyDown = ({ key }: KeyboardEvent) => {
+    if (!/\d/.test(key)) return;
+
+    const link = links[Number(key) - 1];
+    if (link) goto(link.href);
+  };
 </script>
 
+<svelte:window on:keydown|={onKeyDown} />
 <aside class="sidebar">
   <header class="header">
     <Link class="home-link" href={ROUTES.HOME}>Learner's Dictionary</Link>

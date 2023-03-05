@@ -1,0 +1,19 @@
+.scrollable() {
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    @side: 0.5rem;
+
+    width: @side;
+    height: @side;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgb(51 51 51 / 30%);
+    border-radius: 0.25rem;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgb(51 51 51 / 40%);
+  }
+}

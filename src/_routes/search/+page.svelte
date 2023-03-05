@@ -3,13 +3,20 @@
   import { crawler, type CrawlerEntry } from "shared/api";
   import { Loadable, Section } from "shared/ui";
 
-  let form: EntryFormValues;
-  let entry: Promise<CrawlerEntry>;
+  let form: EntryFormValues | undefined;
+  let promise: Promise<CrawlerEntry>;
 
-  const search = () => (entry = crawler.search(form.text));
+  const search = () => {
+    const separator = form?.separator.replace(/\\n/g, "\n") || "\n";
+    const terms = form?.text.split(separator).filter(Boolean);
+
+    if (terms?.length) {
+      promise = crawler.search(terms);
+    }
+  };
 </script>
 
 <Section title="New definitions search">
   <EntryForm bind:form on:submit={search} />
-  <Loadable promise={entry} />
+  <Loadable {promise} />
 </Section>
