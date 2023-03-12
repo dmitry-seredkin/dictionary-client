@@ -1,5 +1,7 @@
 <script lang="ts">
   import Sidebar from "widgets/sidebar.svelte";
+
+  import "../app.css";
 </script>
 
 <Sidebar />
