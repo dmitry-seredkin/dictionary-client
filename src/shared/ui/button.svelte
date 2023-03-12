@@ -1,12 +1,12 @@
 <script lang="ts">
+  let className = "";
+
+  export { className as class };
 </script>
 
-<button class="button" on:click>
+<button
+  class={`rounded bg-orange-500 p-2 font-medium leading-normal text-white transition hover:bg-orange-600 ${className}`}
+  on:click
+>
   <slot />
 </button>
-
-<style lang="less">
-  .button {
-    padding: 0.5rem;
-  }
-</style>
