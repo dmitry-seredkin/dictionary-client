@@ -1,7 +1,9 @@
 <script lang="ts">
+  import type { Nullable } from "shared/models";
+
   type T = $$Generic;
 
-  export let data: T[];
+  export let data: Nullable<T[]>;
   export let fallback = "List is empty";
 </script>
 
@@ -14,15 +16,20 @@
     {/each}
   </ul>
 {:else}
-  <p>{fallback}</p>
+  <slot name="fallback">
+    <p>{fallback}</p>
+  </slot>
 {/if}
 
 <style lang="less">
+  @import "styles/mixins";
+
   .list {
     display: grid;
     align-content: flex-start;
     gap: 1rem;
-    height: 100%;
     overflow: auto;
+
+    .scrollable();
   }
 </style>

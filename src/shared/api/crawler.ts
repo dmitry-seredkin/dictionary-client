@@ -16,5 +16,5 @@ export interface CrawlerEntry {
 }
 
 export const crawler = {
-  search: (query: string) => fetcher.post<CrawlerEntry>("/crawler/search", { query }),
+  search: (terms: string[]) => fetcher.post<CrawlerEntry>("/crawler/search", { terms }),
 };
