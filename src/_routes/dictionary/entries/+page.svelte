@@ -25,7 +25,7 @@
 
 <svelte:window on:keydown={onKeyDown} />
 <div class="search">
-  <Input placeholder="Search..." bind:value={query} />
+  <Input bind:value={query} placeholder="Search..."/>
   <Button on:click={searchEntries}>Search</Button>
 </div>
 <List data={entries} fallback="Entries weren't found">
@@ -36,7 +36,8 @@
 
 <style lang="less">
   .search {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 10rem;
     gap: 1rem;
     margin-bottom: 2rem;
   }

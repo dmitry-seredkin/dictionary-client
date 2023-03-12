@@ -6,22 +6,19 @@
 </script>
 
 <script lang="ts">
-  import Button from "@smui/button";
-  import Textfield from "@smui/textfield";
+  import { Button, Input } from "shared/ui";
 
   export const form: EntryFormValues = { separator: "", text: "" };
 </script>
 
 <form class="form" on:submit>
-  <Textfield
+  <Input
     bind:value={form.text}
-    label="Search for definitions"
-    style="width: 100%; grid-column: span 2"
-    input$rows={8}
-    textarea
+    placeholder="Search for definitions"
+    
   />
-  <Textfield bind:value={form.separator} label="Separator" variant="outlined" />
-  <Button type="submit" style="height: 100%" variant="unelevated">Search</Button>
+  <Input bind:value={form.separator} placeholder="Separator" />
+  <Button>Search</Button>
 </form>
 
 <style lang="less">
