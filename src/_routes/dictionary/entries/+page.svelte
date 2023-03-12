@@ -24,21 +24,12 @@
 </script>
 
 <svelte:window on:keydown={onKeyDown} />
-<div class="search">
-  <Input bind:value={query} placeholder="Search..."/>
-  <Button on:click={searchEntries}>Search</Button>
+<div class="mb-8 grid grid-cols-12 gap-4">
+  <Input class="col-span-10" bind:value={query} autofocus placeholder="Type a term here..." />
+  <Button class="col-span-2" on:click={searchEntries}>Search</Button>
 </div>
 <List data={entries} fallback="Entries weren't found">
   <Link slot="item" let:item={entry} let:index href={getEntryPath(entry.id)}>
     <EntryItem {entry} {index} />
   </Link>
 </List>
-
-<style lang="less">
-  .search {
-    display: grid;
-    grid-template-columns: 1fr 10rem;
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-</style>
