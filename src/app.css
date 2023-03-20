@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .scrollable {
+    @apply overflow-auto;
+  }
+
+  .scrollable::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+
+  .scrollable::-webkit-scrollbar-thumb {
+    @apply rounded bg-neutral-700/30;
+  }
+
+  .scrollable::-webkit-scrollbar-thumb:hover {
+    @apply bg-neutral-700/40;
+  }
+}

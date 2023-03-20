@@ -38,5 +38,8 @@
     "vite": "^4.0.0",
     "vite-tsconfig-paths": "4.0.5",
     "vitest": "^0.25.3"
+  },
+  "dependencies": {
+    "clsx": "1.2.1"
   }
 }
