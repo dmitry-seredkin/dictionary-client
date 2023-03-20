@@ -30,6 +30,6 @@
 </div>
 <List data={entries} fallback="Entries weren't found">
   <Link slot="item" let:item={entry} let:index href={getEntryPath(entry.id)}>
-    <EntryItem {entry} {index} />
+    <EntryItem {...entry} {index} clickable />
   </Link>
 </List>

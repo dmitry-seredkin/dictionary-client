@@ -6,28 +6,31 @@
 </script>
 
 <script lang="ts">
-  import { Button, Input } from "shared/ui";
+  import { clsx } from "clsx";
+
+  import { Button, Input, Textarea } from "shared/ui";
+
+  let className = "";
 
   export const form: EntryFormValues = { separator: "", text: "" };
+  export { className as class };
+
+  $: disabled = !(form.separator || form.text);
+
+  const reset = () => {
+    form.separator = "";
+    form.text = "";
+  };
 </script>
 
-<form class="form" on:submit>
-  <Input
+<form class={clsx(className, "grid grid-cols-12 gap-4 rounded bg-white p-4")} on:submit>
+  <Input class="col-span-8" bind:value={form.separator} placeholder="Separator" />
+  <Button class="col-span-2" variant="secondary" {disabled} on:click={reset}>Reset</Button>
+  <Button type="submit" class="col-span-2" {disabled}>Search</Button>
+  <Textarea
+    class="col-span-full"
     bind:value={form.text}
+    autofocus
     placeholder="Search for definitions"
-    
   />
-  <Input bind:value={form.separator} placeholder="Separator" />
-  <Button>Search</Button>
 </form>
-
-<style lang="less">
-  .form {
-    display: grid;
-    grid-template-columns: 1fr 15rem;
-    gap: 1.5rem; // TODO: variables
-    padding: 1rem; // TODO: variables
-    background-color: #ffffff; // TODO: variables
-    border-radius: 0.5rem; // TODO: variables
-  }
-</style>

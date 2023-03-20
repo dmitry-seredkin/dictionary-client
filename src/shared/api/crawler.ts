@@ -1,20 +1,17 @@
+import type { EntryId } from "./dictionary";
 import { fetcher } from "./_fetcher";
 
-export interface CrawlerEntryTerm {
-  word: string;
+export interface CrawlerSearchEntry {
+  id: EntryId;
+  term: string;
   partOfSpeech: string;
-  transcript: string;
 }
 
-export interface CrawlerEntrySense {
-  definition: string;
-  examples: string[];
-}
-export interface CrawlerEntry {
-  term: CrawlerEntryTerm;
-  senses: CrawlerEntrySense[];
+export interface CrawlerSearchResponse {
+  query: string;
+  entry: CrawlerSearchEntry | null;
 }
 
 export const crawler = {
-  search: (terms: string[]) => fetcher.post<CrawlerEntry>("/crawler/search", { terms }),
+  search: (terms: string[]) => fetcher.post<CrawlerSearchResponse[]>("/crawler/search", { terms }),
 };

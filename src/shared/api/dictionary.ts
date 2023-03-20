@@ -1,6 +1,6 @@
 import { fetcher } from "./_fetcher";
 
-type EntryId = number & { _type?: "EntryId" };
+export type EntryId = number & { _type?: "EntryId" };
 
 export interface Entry {
   id: EntryId;

@@ -1,34 +1,24 @@
 <script lang="ts">
-  import type { EntryItem } from "shared/api";
+  import { clsx } from "clsx";
 
-  export let entry: EntryItem;
+  export let clickable = false;
   export let index: number;
+  export let partOfSpeech = "";
+  export let term: string;
 </script>
 
-<p class="entry">
-  <span>{++index}</span>
-  <span class="term">{entry.term} </span>
-  <span class="part-of-speech">{entry.partOfSpeech}</span>
-</p>
-
-<style lang="less">
-  .entry {
-    padding: 1rem 2rem; // TODO: variable
-    border-radius: 0.25rem; // TODO: variable
-    background-color: #ffffff; // TODO: variable
-
-    &:hover {
-      background-color: #f9f9f9;
-    }
-  }
-
-  .term {
-    font-weight: 700;
-    margin-left: 2rem; // TODO: variable
-  }
-
-  .part-of-speech {
-    margin-left: 1rem; // TODO: variable
-    color: #999999; // TODO: variable
-  }
-</style>
+<div
+  class={clsx(
+    "flex justify-between rounded bg-white px-8 py-4",
+    clickable && "cursor-pointer hover:bg-neutral-50"
+  )}
+>
+  <p>
+    <span>{++index}</span>
+    <span class="ml-8 font-bold">{term} </span>
+    {#if partOfSpeech}
+      <span class="ml-4 text-neutral-400">{partOfSpeech}</span>
+    {/if}
+  </p>
+  <slot />
+</div>
