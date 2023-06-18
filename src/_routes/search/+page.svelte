@@ -4,11 +4,13 @@
    * 1. Add loading state and form cleaning / repeat buttons
    * 2. Lock search form during request
    * 3. Improve layout
+   * 4. Save the previous search state
+   * 5. Add checkbox for preview / turn off this checkbox on search result
    */
   import EntryForm, { type EntryFormValues } from "entities/entry-form.svelte";
   import EntryItem from "entities/entry-item.svelte";
-  import { crawler, type CrawlerSearchResponse } from "shared/api";
-  import { List, Loadable, Section } from "shared/ui";
+  import { dictionary, type CrawlerSearchResponse } from "shared/api";
+  import { Button, List, Loadable, Section } from "shared/ui";
 
   let form: EntryFormValues | undefined;
   let promise: Promise<CrawlerSearchResponse[]>;
@@ -21,23 +23,42 @@
 
   const search = () => {
     if (terms?.length) {
-      promise = crawler.search(terms);
+      promise = dictionary.search(terms);
     }
   };
+
+  const copyDictionary = () =>
+    promise.then((entries) => {
+      const dictionary = entries.reduce(
+        (result, { entry }) =>
+          entry == null
+            ? result
+            : `${result}${entry.term}\t(${entry.partOfSpeech}) ${entry.sense}\n`,
+        ""
+      );
+      navigator.clipboard.writeText(dictionary);
+    });
 
   const mapResponseToItem = ({ entry, query }: CrawlerSearchResponse) => {
     if (entry == null) {
       return { term: `(${query})` };
     }
-    return { term: `${entry.term} (${query})`, partOfSpeech: entry.partOfSpeech };
+    return {
+      term: `${entry.term} (${query})`,
+      partOfSpeech: entry.partOfSpeech,
+      sense: entry.sense,
+    };
   };
 </script>
 
 <Section title="New definitions search">
   <EntryForm class="mb-4" bind:form on:submit={search} />
-  <p class="mb-4 text-lg font-bold">
-    {terms?.length ? `Search results (${terms?.length} terms)` : "Enter your search request"}
-  </p>
+  <div class="mb-4 flex items-center justify-between">
+    <p class="mb-4 text-lg font-bold">
+      {terms?.length ? `Search results (${terms?.length} terms)` : "Enter your search request"}
+    </p>
+    <Button disabled={!promise} on:click={copyDictionary}>Copy</Button>
+  </div>
   <Loadable {promise}>
     <List slot="result" let:value data={value}>
       <EntryItem
